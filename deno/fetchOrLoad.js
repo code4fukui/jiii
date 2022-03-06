@@ -7,10 +7,23 @@ const escapeURL = (url) => {
   s = s.replace(/\s/g, "_");
   return s;
 };
+
+const getCharsetFromHTML = (bin) => {
+  const s = new TextDecoder().decode(bin);
+  const cs = s.match(/charset="(.+)"/)
+  if (!cs) {
+    return "utf-8";
+  }
+  return cs[1];
+};
+
 const fetchText = async (url) => {
   const bin = await fetchBin(url);
+  const cset = getCharsetFromHTML(bin);
+  //console.log(cset);
   //const text = SJIS.decodeAuto(bin);
-  const text = new TextDecoder("euc-jp").decode(bin);
+  //const text = new TextDecoder("euc-jp").decode(bin);
+  const text = new TextDecoder(cset).decode(bin);
   return text;
 };
 export const fetchOrLoad = async (url, forcefetch) => {

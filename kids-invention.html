@@ -1,0 +1,121 @@
+<!DOCTYPE html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width">
+<title>少年少女発明クラブ ダッシュボード</title>
+<meta property="og:title" content="少年少女発明クラブ ダッシュボード">
+<meta name="format-detection" content="telephone=no"/>
+<style>
+body {
+	font-family: sans-serif;
+	text-align: center;
+	margin: 0;
+	padding: 0;
+}
+h1 {
+	margin: 0;
+	font-size: 4.5vw;
+	padding: 2vw 0;
+	background-color: #e6fd37;
+	color: black;
+	margin-bottom: 2vw;
+}
+h3 {
+	padding: .2em 0;
+	margin: 0;
+}
+#back {
+	margin: .5em;
+}
+.sub {
+	font-size: 83%;
+	display: inline-block;
+	background-color: white;
+	padding: 0 .3em;
+}
+.name {
+	font-size: min(2.5vw, 25px);
+}
+.num {
+	font-weight: bold;
+}
+.created {
+	color: #fd3a3a;
+}
+.terminated {
+	color:#718ab2;
+}
+/* tabularmaps */
+#tmapc {
+	max-width: 800px;
+	margin: 0 auto;
+}
+#tmapc > div > span {
+	font-size: min(1.5vw, 15px);
+	align-items: center;
+	justify-content: center;
+	border-radius: .5vw;
+	border: .1vw solid #333;
+	padding: .1vw .1vw;
+	margin: .2vw;
+}
+/* other */
+select {
+	font-size: 20px;
+	margin: 0 0 .5em 0;
+}
+#detail {
+	text-align: left;
+	padding: .3em;
+	font-size: 90%;
+	overflow: scroll;
+	display: inline-block;
+	border: 1px solid gray;
+	width: 90vw;
+	max-width: 700px;
+	height: 10em;
+}
+/* credit */
+.credit {
+	margin: 20px;
+	text-align: center;
+	font-size: 80%;
+}
+a {
+	color: #666 !important;
+}
+.csv table {
+	border-collapse: collapse;
+}
+.csv td, .csv th {
+	border: 1px solid gray;
+	font-size: 80%;
+	padding: .2em;
+	word-break: break-all;
+	word-wrap: break-word;
+}
+.csv {
+	overflow: scroll;
+	margin: 0 1em;
+}
+.csv input {
+	width: 30em;
+	margin: .3em;
+	font-size: 16px;
+}
+</style>
+</head>
+<body>
+
+<h1>全日本学生児童発明くふう展サーチ</h1>
+
+<div class="csv">
+<script type="module" src="https://code4sabae.github.io/js/csv-viewer.js"></script>
+<csv-viewer name="全日本学生児童発明くふう展｜公益社団法人発明協会" src=jiii-kids-invention.csv></csv-viewer>
+</div>
+
+<div class="credit">
+APP: CC BY <a href=https://fukuno.jig.jp/3506>@taisukef 福野泰介</a><br>
+DATA: <a href="http://koueki.jiii.or.jp/hyosho/gakusei/gakusei_yoko.html">全日本学生児童発明くふう展｜公益社団法人発明協会</a> → (<a href="https://github.com/code4fukui/jiii/">jiii CSVオープンデータ by Code for FUKUI</a>)<br>
+LAYOUT: <a href=https://www.stopcovid19.jp/tabularmapsjapan.csv>TabularMaps Japan - 日本カラム地図 CSV</a> CC0 <a href=https://github.com/tabularmaps/hq>カラム地図 / TabularMaps on Github</a><br>
+</div>
+
+</body>
+</html>
