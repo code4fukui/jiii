@@ -10,7 +10,6 @@ const html = await fetchOrLoad(url);
 const dom = HTMLParser.parse(html);
 
 const lls = dom.querySelectorAll(".pico_body tr");
-console.log(lls.length);
 let pref = null;
 const data = [];
 for (const ll of lls) {
@@ -22,30 +21,36 @@ for (const ll of lls) {
     continue;
   }
   const a = tds[1].querySelector("a");
-  if (!a) {
+  const link = a?.getAttribute("href");
+  const name = (a ? a : tds[1]).text.trim();
+  if (name == "クラブ名") {
     continue;
   }
-  const link = a.getAttribute("href");
-  const name = a.text.trim();;
+  if (name.endsWith("（休止中）")) {
+    continue;
+  }
+
   const city = tds[2].text.trim();
 
   const d = { name, yomi, link, pref, city };
 
-  const html2 = await fetchOrLoad(link);
-  const dom2 = HTMLParser.parse(html2);
-  //const trs = dom2.querySelectorAll(".pico_body tr");
-  const trs = dom2.querySelectorAll("tr");
-  for (const tr of trs) {
-    const tds = tr.querySelectorAll("td");
-    //console.log(tds?.length);
-    if (tds?.length != 3) {
-      continue;
-    }
-    const key = tds[1].text.trim();
-    const val = tds[2].text.trim();
-    //console.log(key, val);
-    if (key.length > 0) {
-      d[key] = val;
+  if (link) {
+    const html2 = await fetchOrLoad(link);
+    const dom2 = HTMLParser.parse(html2);
+    //const trs = dom2.querySelectorAll(".pico_body tr");
+    const trs = dom2.querySelectorAll("tr");
+    for (const tr of trs) {
+      const tds = tr.querySelectorAll("td");
+      //console.log(tds?.length);
+      if (tds?.length != 3) {
+        continue;
+      }
+      const key = tds[1].text.trim();
+      const val = tds[2].text.trim();
+      //console.log(key, val);
+      if (key.length > 0) {
+        d[key] = val;
+      }
     }
   }
   data.push(d);
@@ -56,5 +61,5 @@ for (const ll of lls) {
   }
   */
 }
-//console.log(data);
+console.log(data.length);
 await Deno.writeTextFile("../jiii.csv", CSV.stringify(data));
