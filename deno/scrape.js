@@ -3,6 +3,8 @@ import { HTMLParser } from "https://js.sabae.cc/HTMLParser.js";
 import { CSV } from "https://js.sabae.cc/CSV.js";
 import { JAPAN_PREF } from "https://js.sabae.cc/JAPAN_PREF.js";
 
+await Deno.mkdir("temp", { recursive: true });
+
 const url = "http://kids.jiii.or.jp/modules/pico/index.php?content_id=259";
 const html = await fetchOrLoad(url);
 const dom = HTMLParser.parse(html);
