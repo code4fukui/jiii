@@ -37,6 +37,17 @@ for (const ll of lls) {
   if (link) {
     const html2 = await fetchOrLoad(link);
     const dom2 = HTMLParser.parse(html2);
+    // 活動紹介
+    const tbls = dom2.querySelectorAll("table");
+    for (const tbl of tbls) {
+      const chk = tbl.querySelector("tr td");
+      if (chk && chk.text.trim() == "活動紹介") {
+        const td = tbl.querySelectorAll("tr")[1].querySelector("td");
+        d["活動紹介"] = td?.text.trim();
+      }
+    }
+
+    // その他項目
     //const trs = dom2.querySelectorAll(".pico_body tr");
     const trs = dom2.querySelectorAll("tr");
     for (const tr of trs) {
